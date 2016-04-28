@@ -1,0 +1,90 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from FriendService WSDL service -->
+
+  <service name="Friend" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://com"/>
+      <parameter name="wsdlServiceElement" value="FriendService"/>
+      <parameter name="schemaQualified" value="http://com"/>
+      <parameter name="wsdlServicePort" value="Friend"/>
+      <parameter name="className" value="com.FriendSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Friend"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getFriendsName" qname="operNS:getFriendsName" xmlns:operNS="http://com" returnQName="retNS:getFriendsNameReturn" xmlns:retNS="http://com" returnType="rtns:ArrayOf_xsd_anyType" xmlns:rtns="http://com" returnItemQName="tns:item" xmlns:tns="http://com" soapAction="" >
+        <parameter qname="pns:friendList" xmlns:pns="http://com" type="tns:ArrayOf_xsd_anyType" xmlns:tns="http://com" itemQName="itns:item" xmlns:itns="http://com"/>
+      </operation>
+      <operation name="getSessionUserPendingFriend" qname="operNS:getSessionUserPendingFriend" xmlns:operNS="http://com" returnQName="retNS:getSessionUserPendingFriendReturn" xmlns:retNS="http://com" returnType="rtns:ArrayOf_xsd_anyType" xmlns:rtns="http://com" returnItemQName="tns:item" xmlns:tns="http://com" soapAction="" >
+        <parameter qname="pns:userId" xmlns:pns="http://com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getSessionUserFriend" qname="operNS:getSessionUserFriend" xmlns:operNS="http://com" returnQName="retNS:getSessionUserFriendReturn" xmlns:retNS="http://com" returnType="rtns:ArrayOf_xsd_anyType" xmlns:rtns="http://com" returnItemQName="tns:item" xmlns:tns="http://com" soapAction="" >
+        <parameter qname="pns:userId" xmlns:pns="http://com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getSessionUserPendingFriend getFriendsName getSessionUserFriend"/>
+
+      <arrayMapping
+        xmlns:ns="http://com"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com"
+        qname="ns:>getFriendsName"
+        type="java:com.GetFriendsName"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com"
+        qname="ns:>getSessionUserFriend"
+        type="java:com.GetSessionUserFriend"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com"
+        qname="ns:>getSessionUserPendingFriend"
+        type="java:com.GetSessionUserPendingFriend"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com"
+        qname="ns:>getSessionUserPendingFriendResponse"
+        type="java:com.GetSessionUserPendingFriendResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com"
+        qname="ns:>getFriendsNameResponse"
+        type="java:com.GetFriendsNameResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com"
+        qname="ns:>getSessionUserFriendResponse"
+        type="java:com.GetSessionUserFriendResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

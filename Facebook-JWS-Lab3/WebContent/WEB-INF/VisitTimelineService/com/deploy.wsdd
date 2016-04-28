@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from VisitTimelineService WSDL service -->
+
+  <service name="VisitTimeline" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://com"/>
+      <parameter name="wsdlServiceElement" value="VisitTimelineService"/>
+      <parameter name="schemaQualified" value="http://bean.com,http://com"/>
+      <parameter name="wsdlServicePort" value="VisitTimeline"/>
+      <parameter name="className" value="com.VisitTimeline"/>
+      <parameter name="wsdlPortType" value="VisitTimeline"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://com" xmlns:retNS="http://com" xmlns:rtns="http://bean.com" name="education" qname="operNS:education" returnQName="retNS:educationReturn" returnType="rtns:EduDetails" soapAction="">
+        <parameter xmlns:pns="http://com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:visituserId" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://com" xmlns:retNS="http://com" xmlns:rtns="http://bean.com" name="work" qname="operNS:work" returnQName="retNS:workReturn" returnType="rtns:WorkDetails" soapAction="">
+        <parameter xmlns:pns="http://com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:visituserId" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://com" xmlns:retNS="http://com" xmlns:rtns="http://bean.com" name="visitTimeline" qname="operNS:visitTimeline" returnQName="retNS:visitTimelineReturn" returnType="rtns:UserDetails" soapAction="">
+        <parameter xmlns:pns="http://com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:visituserId" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="education work visitTimeline"/>
+
+      <typeMapping xmlns:ns="http://bean.com" qname="ns:EduDetails" type="java:com.bean.EduDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://bean.com" qname="ns:WorkDetails" type="java:com.bean.WorkDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://bean.com" qname="ns:UserDetails" type="java:com.bean.UserDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

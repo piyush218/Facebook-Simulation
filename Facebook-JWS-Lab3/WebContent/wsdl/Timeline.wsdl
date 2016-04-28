@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://com" xmlns:intf="http://com" xmlns:tns1="http://bean.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://bean.com"/>
+   <element name="timeline">
+    <complexType>
+     <sequence>
+      <element name="userId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="timelineResponse">
+    <complexType>
+     <sequence>
+      <element name="timelineReturn" type="tns1:UserDetails"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="education">
+    <complexType>
+     <sequence>
+      <element name="userId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="educationResponse">
+    <complexType>
+     <sequence>
+      <element name="educationReturn" type="tns1:EduDetails"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="work">
+    <complexType>
+     <sequence>
+      <element name="userId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="workResponse">
+    <complexType>
+     <sequence>
+      <element name="workReturn" type="tns1:WorkDetails"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://bean.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="UserDetails">
+    <sequence>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="country" nillable="true" type="xsd:string"/>
+     <element name="dateOfBirth" nillable="true" type="xsd:string"/>
+     <element name="emailId" nillable="true" type="xsd:string"/>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="gender" nillable="true" type="xsd:string"/>
+     <element name="interests_music" nillable="true" type="xsd:string"/>
+     <element name="interests_shows" nillable="true" type="xsd:string"/>
+     <element name="interests_sports" nillable="true" type="xsd:string"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="phoneNumber" nillable="true" type="xsd:string"/>
+     <element name="relationship" nillable="true" type="xsd:string"/>
+     <element name="userId" nillable="true" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="EduDetails">
+    <sequence>
+     <element name="edu_Id" nillable="true" type="xsd:double"/>
+     <element name="endDate" nillable="true" type="xsd:string"/>
+     <element name="major" nillable="true" type="xsd:string"/>
+     <element name="schoolName" nillable="true" type="xsd:string"/>
+     <element name="startDate" nillable="true" type="xsd:string"/>
+     <element name="userId" nillable="true" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="WorkDetails">
+    <sequence>
+     <element name="companyName" nillable="true" type="xsd:string"/>
+     <element name="endDate" nillable="true" type="xsd:string"/>
+     <element name="position" nillable="true" type="xsd:string"/>
+     <element name="startDate" nillable="true" type="xsd:string"/>
+     <element name="userId" nillable="true" type="xsd:double"/>
+     <element name="workId" nillable="true" type="xsd:double"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="workResponse">
+
+      <wsdl:part element="impl:workResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="workRequest">
+
+      <wsdl:part element="impl:work" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="timelineRequest">
+
+      <wsdl:part element="impl:timeline" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="educationRequest">
+
+      <wsdl:part element="impl:education" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="educationResponse">
+
+      <wsdl:part element="impl:educationResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="timelineResponse">
+
+      <wsdl:part element="impl:timelineResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Timeline">
+
+      <wsdl:operation name="timeline">
+
+         <wsdl:input message="impl:timelineRequest" name="timelineRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:timelineResponse" name="timelineResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="education">
+
+         <wsdl:input message="impl:educationRequest" name="educationRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:educationResponse" name="educationResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="work">
+
+         <wsdl:input message="impl:workRequest" name="workRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:workResponse" name="workResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TimelineSoapBinding" type="impl:Timeline">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="timeline">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="timelineRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="timelineResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="education">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="educationRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="educationResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="work">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="workRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="workResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TimelineService">
+
+      <wsdl:port binding="impl:TimelineSoapBinding" name="Timeline">
+
+         <wsdlsoap:address location="http://localhost:8080/Facebook-JWS-Lab3/services/Timeline"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

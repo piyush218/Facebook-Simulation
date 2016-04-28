@@ -1,0 +1,59 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from AboutService WSDL service -->
+
+  <service name="About" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://com"/>
+      <parameter name="wsdlServiceElement" value="AboutService"/>
+      <parameter name="schemaQualified" value="http://bean.com,http://com"/>
+      <parameter name="wsdlServicePort" value="About"/>
+      <parameter name="className" value="com.AboutSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="About"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="work" qname="operNS:work" xmlns:operNS="http://com" returnQName="retNS:workReturn" xmlns:retNS="http://com" returnType="rtns:WorkDetails" xmlns:rtns="http://bean.com" soapAction="" >
+        <parameter qname="pns:userId" xmlns:pns="http://com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="education" qname="operNS:education" xmlns:operNS="http://com" returnQName="retNS:educationReturn" xmlns:retNS="http://com" returnType="rtns:EduDetails" xmlns:rtns="http://bean.com" soapAction="" >
+        <parameter qname="pns:userId" xmlns:pns="http://com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="about" qname="operNS:about" xmlns:operNS="http://com" returnQName="retNS:aboutReturn" xmlns:retNS="http://com" returnType="rtns:UserDetails" xmlns:rtns="http://bean.com" soapAction="" >
+        <parameter qname="pns:userId" xmlns:pns="http://com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="education work about"/>
+
+      <typeMapping
+        xmlns:ns="http://bean.com"
+        qname="ns:EduDetails"
+        type="java:com.bean.EduDetails"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://bean.com"
+        qname="ns:WorkDetails"
+        type="java:com.bean.WorkDetails"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://bean.com"
+        qname="ns:UserDetails"
+        type="java:com.bean.UserDetails"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

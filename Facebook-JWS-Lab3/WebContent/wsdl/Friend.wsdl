@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://com" xmlns:intf="http://com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getFriendsName">
+    <complexType>
+     <sequence>
+      <element name="friendList" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <element name="getFriendsNameResponse">
+    <complexType>
+     <sequence>
+      <element name="getFriendsNameReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSessionUserPendingFriend">
+    <complexType>
+     <sequence>
+      <element name="userId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSessionUserPendingFriendResponse">
+    <complexType>
+     <sequence>
+      <element name="getSessionUserPendingFriendReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSessionUserFriend">
+    <complexType>
+     <sequence>
+      <element name="userId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSessionUserFriendResponse">
+    <complexType>
+     <sequence>
+      <element name="getSessionUserFriendReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getSessionUserFriendRequest">
+
+      <wsdl:part element="impl:getSessionUserFriend" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getFriendsNameResponse">
+
+      <wsdl:part element="impl:getFriendsNameResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSessionUserFriendResponse">
+
+      <wsdl:part element="impl:getSessionUserFriendResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getFriendsNameRequest">
+
+      <wsdl:part element="impl:getFriendsName" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSessionUserPendingFriendResponse">
+
+      <wsdl:part element="impl:getSessionUserPendingFriendResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSessionUserPendingFriendRequest">
+
+      <wsdl:part element="impl:getSessionUserPendingFriend" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Friend">
+
+      <wsdl:operation name="getFriendsName">
+
+         <wsdl:input message="impl:getFriendsNameRequest" name="getFriendsNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getFriendsNameResponse" name="getFriendsNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSessionUserPendingFriend">
+
+         <wsdl:input message="impl:getSessionUserPendingFriendRequest" name="getSessionUserPendingFriendRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getSessionUserPendingFriendResponse" name="getSessionUserPendingFriendResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSessionUserFriend">
+
+         <wsdl:input message="impl:getSessionUserFriendRequest" name="getSessionUserFriendRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getSessionUserFriendResponse" name="getSessionUserFriendResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="FriendSoapBinding" type="impl:Friend">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getFriendsName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getFriendsNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getFriendsNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSessionUserPendingFriend">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSessionUserPendingFriendRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSessionUserPendingFriendResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSessionUserFriend">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSessionUserFriendRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSessionUserFriendResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="FriendService">
+
+      <wsdl:port binding="impl:FriendSoapBinding" name="Friend">
+
+         <wsdlsoap:address location="http://localhost:8080/Facebook-JWS-Lab3/services/Friend"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

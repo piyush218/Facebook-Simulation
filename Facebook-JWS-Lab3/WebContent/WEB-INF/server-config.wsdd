@@ -1,0 +1,146 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Users\cbsejpal\workspace_new\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Facebook-JWS-Lab3\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="Timeline" provider="java:RPC" style="wrapped" use="literal">
+  <ns3:operation name="timeline" qname="ns1:timeline" returnQName="ns1:timelineReturn" returnType="ns2:UserDetails" soapAction="" xmlns:ns1="http://com" xmlns:ns2="http://bean.com" xmlns:ns3="http://xml.apache.org/axis/wsdd/">
+   <ns3:parameter qname="ns1:userId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns3:operation>
+  <ns1:operation name="education" qname="ns3:education" returnQName="ns3:educationReturn" returnType="ns4:EduDetails" soapAction="" xmlns:ns3="http://com" xmlns:ns4="http://bean.com">
+   <ns1:parameter qname="ns3:userId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="work" qname="ns5:work" returnQName="ns5:workReturn" returnType="ns6:WorkDetails" soapAction="" xmlns:ns5="http://com" xmlns:ns6="http://bean.com">
+   <ns1:parameter qname="ns5:userId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="education work timeline"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Timeline"/>
+  <ns1:parameter name="className" value="com.Timeline"/>
+  <ns1:parameter name="wsdlServicePort" value="Timeline"/>
+  <ns1:parameter name="schemaQualified" value="http://bean.com,http://com"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://com"/>
+  <ns1:parameter name="wsdlServiceElement" value="TimelineService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns7:EduDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.bean.EduDetails" xmlns:ns7="http://bean.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns8:WorkDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.bean.WorkDetails" xmlns:ns8="http://bean.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:UserDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.bean.UserDetails" xmlns:ns9="http://bean.com"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="Search" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="search" qname="ns10:search" returnQName="ns10:searchReturn" returnType="ns11:UserDetails" soapAction="" xmlns:ns10="http://com" xmlns:ns11="http://bean.com">
+   <ns1:parameter qname="ns10:searchValue" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="search"/>
+  <ns1:parameter name="wsdlPortType" value="Search"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://bean.com,http://com"/>
+  <ns1:parameter name="wsdlServicePort" value="Search"/>
+  <ns1:parameter name="className" value="com.Search"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://com"/>
+  <ns1:parameter name="wsdlServiceElement" value="SearchService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns12:UserDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.bean.UserDetails" xmlns:ns12="http://bean.com"/>
+ </ns1:service>
+ <ns1:service name="Login" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="login" qname="ns13:login" returnQName="ns13:loginReturn" returnType="xsd:double" soapAction="" xmlns:ns13="http://com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns13:username" type="xsd:string"/>
+   <ns1:parameter qname="ns13:password" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="login"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Login"/>
+  <ns1:parameter name="className" value="com.Login"/>
+  <ns1:parameter name="wsdlServicePort" value="Login"/>
+  <ns1:parameter name="schemaQualified" value="http://com"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://com"/>
+  <ns1:parameter name="wsdlServiceElement" value="LoginService"/>
+ </ns1:service>
+ <ns1:service name="VisitTimeline" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="education" qname="ns14:education" returnQName="ns14:educationReturn" returnType="ns15:EduDetails" soapAction="" xmlns:ns14="http://com" xmlns:ns15="http://bean.com">
+   <ns1:parameter qname="ns14:visituserId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="work" qname="ns16:work" returnQName="ns16:workReturn" returnType="ns17:WorkDetails" soapAction="" xmlns:ns16="http://com" xmlns:ns17="http://bean.com">
+   <ns1:parameter qname="ns16:visituserId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="visitTimeline" qname="ns18:visitTimeline" returnQName="ns18:visitTimelineReturn" returnType="ns19:UserDetails" soapAction="" xmlns:ns18="http://com" xmlns:ns19="http://bean.com">
+   <ns1:parameter qname="ns18:visituserId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="education work visitTimeline"/>
+  <ns1:parameter name="wsdlPortType" value="VisitTimeline"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://bean.com,http://com"/>
+  <ns1:parameter name="wsdlServicePort" value="VisitTimeline"/>
+  <ns1:parameter name="className" value="com.VisitTimeline"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://com"/>
+  <ns1:parameter name="wsdlServiceElement" value="VisitTimelineService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns20:EduDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.bean.EduDetails" xmlns:ns20="http://bean.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns21:WorkDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.bean.WorkDetails" xmlns:ns21="http://bean.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns22:UserDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.bean.UserDetails" xmlns:ns22="http://bean.com"/>
+ </ns1:service>
+ <ns1:service name="About" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="work" qname="ns23:work" returnQName="ns23:workReturn" returnType="ns24:WorkDetails" soapAction="" xmlns:ns23="http://com" xmlns:ns24="http://bean.com">
+   <ns1:parameter qname="ns23:userId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="education" qname="ns25:education" returnQName="ns25:educationReturn" returnType="ns26:EduDetails" soapAction="" xmlns:ns25="http://com" xmlns:ns26="http://bean.com">
+   <ns1:parameter qname="ns25:userId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="about" qname="ns27:about" returnQName="ns27:aboutReturn" returnType="ns28:UserDetails" soapAction="" xmlns:ns27="http://com" xmlns:ns28="http://bean.com">
+   <ns1:parameter qname="ns27:userId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="education work about"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="About"/>
+  <ns1:parameter name="className" value="com.About"/>
+  <ns1:parameter name="wsdlServicePort" value="About"/>
+  <ns1:parameter name="schemaQualified" value="http://bean.com,http://com"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://com"/>
+  <ns1:parameter name="wsdlServiceElement" value="AboutService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns29:EduDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.bean.EduDetails" xmlns:ns29="http://bean.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns30:WorkDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.bean.WorkDetails" xmlns:ns30="http://bean.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns31:UserDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.bean.UserDetails" xmlns:ns31="http://bean.com"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>
